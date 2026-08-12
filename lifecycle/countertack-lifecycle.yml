@@ -1,0 +1,81 @@
+generated: '2026-08-11'
+method: searched
+source: https://www.gosecure.ai/
+note: 'The dominant lifecycle fact about this provider is the brand itself: CounterTack
+  no longer exists as a trading name. No versioning policy, deprecation policy, Sunset/
+  Deprecation header support, SLA, changelog or status page could be found on any
+  reachable GoSecure surface, and no OpenAPI exists from which deprecated operations
+  could be derived. No StatusPage or Deprecation pointer is emitted, because neither
+  exists.'
+company_lifecycle:
+  original_name: CounterTack, Inc.
+  headquarters: Waltham, Massachusetts, United States
+  events:
+  - date: '2018-06-06'
+    event: CounterTack acquires its channel partner GoSecure, a managed detection and
+      response provider.
+    source: https://www.businesswire.com/news/home/20180606005732/en/
+  - date: '2019-03-05'
+    event: The combined company rebrands as "GoSecure powered by CounterTack".
+    source: https://www.businesswire.com/news/home/20190305005788/en/
+  - date: '2019-08-01'
+    event: GoSecure acquires EdgeWave.
+    source: https://www.businesswire.com/news/home/20190801005327/en/
+  current_status: Operating as GoSecure (www.gosecure.ai), a managed extended detection
+    and response provider. The CounterTack name is retired.
+domain_lifecycle:
+- domain: countertack.com
+  registrar: Gandi SAS
+  created: '2011-10-07'
+  registry_expiry: '2026-10-07'
+  dns: 208.80.205.24 (identical to gosecure.net), AWS Route 53 nameservers
+  reachable: false
+  detail: TLS handshake completes but the certificate presented carries no subject
+    alternative name matching countertack.com, so every HTTPS request fails (curl
+    exit 60). Plain HTTP 303s to HTTPS. The domain is renewed and parked on GoSecure
+    infrastructure but serves nothing.
+  probed: '2026-08-11'
+- domain: gosecure.net
+  reachable: true
+  detail: 301/302 redirects to https://gosecure.ai/. Still hosts the operational
+    subdomains api.gosecure.net, titan.gosecure.net, login.gosecure.net and
+    portal.gosecure.net.
+- domain: gosecure.ai
+  reachable: true
+  detail: Current marketing site; a React single-page application whose sitemap
+    declares 15 marketing URLs and no developer or documentation path.
+versioning:
+  scheme: null
+  current: null
+  docs: null
+  note: No public API versioning policy found.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: No deprecation policy published; Sunset/Deprecation header support cannot be
+    observed because api.gosecure.net 401s anonymously.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  probes:
+  - url: https://status.gosecure.net/
+    status: 000
+    note: does not resolve to a reachable HTTPS service
+  - url: https://trust.gosecure.net/
+    status: 000
+    note: does not resolve to a reachable HTTPS service
+changelog: null
+deprecated_operations: []
+x-evidence:
+  fetched: '2026-08-11'
+  probes:
+  - url: https://countertack.com/
+    status: 000
+  - url: http://countertack.com/
+    status: 303
+  - url: https://www.gosecure.net/
+    status: 200
+  - url: https://status.gosecure.net/
+    status: 000

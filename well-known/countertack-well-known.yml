@@ -1,0 +1,130 @@
+generated: '2026-08-11'
+method: searched
+source: live probes of every host named in apis.yml, 2026-08-11
+note: 'CounterTack now trades as GoSecure. The marketing host www.gosecure.ai answers
+  HTTP 200 with an identical 2493-byte React shell for EVERY path — a control path
+  (/zzz-control-does-not-exist) returns the same 200/2493 — so a 200 from that host
+  is NOT evidence of a document. Only the responses below that returned a real,
+  non-HTML document body are treated as hits. The API host api.gosecure.net answers
+  401 on every /.well-known/ path, including /robots.txt.'
+hosts:
+- host: https://www.gosecure.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/plain
+    file: countertack-security.txt
+    hit: true
+  - path: /.well-known/pgp-key.asc
+    status: 200
+    content_type: application/pgp-keys
+    hit: true
+    note: PGP key referenced by the Encryption field of security.txt; not mirrored here.
+  - path: /.well-known/openid-configuration
+    status: 404
+    hit: false
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    hit: false
+  - path: /.well-known/api-catalog
+    status: 404
+    hit: false
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    hit: false
+  - path: /.well-known/agent-card.json
+    status: 404
+    hit: false
+  - path: /.well-known/agent.json
+    status: 404
+    hit: false
+  - path: /llms.txt
+    status: 404
+    hit: false
+  - path: /robots.txt
+    status: 200
+    content_type: text/plain
+    hit: true
+    note: 'User-agent: * Allow: / — Sitemap https://www.gosecure.ai/sitemap.xml (15 URLs,
+      all marketing; no developer or docs path).'
+- host: https://login.gosecure.net
+  note: Keycloak identity provider fronting the GoSecure Titan platform. Root /.well-known/*
+    paths 404; the realm-scoped discovery documents are the real surface.
+  documents:
+  - path: /realms/gosec-titan/.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: countertack-gosec-titan-openid-configuration.json
+    hit: true
+  - path: /realms/gosec-titan/.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    hit: true
+    note: Byte-identical to the OpenID Connect discovery document (RFC 8414 alias).
+  - path: /realms/gosec-titan/.well-known/uma2-configuration
+    status: 200
+    content_type: application/json
+    file: countertack-gosec-titan-uma2-configuration.json
+    hit: true
+  - path: /realms/master/.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    hit: true
+    note: Keycloak administrative realm; recorded for completeness, not mirrored.
+  - path: /.well-known/security.txt
+    status: 404
+    hit: false
+  - path: /.well-known/agent-card.json
+    status: 404
+    hit: false
+- host: https://api.gosecure.net
+  note: Every path returns 401 Unauthorized with an empty body — no anonymous discovery
+    surface at all.
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+    hit: false
+  - path: /.well-known/openid-configuration
+    status: 401
+    hit: false
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+    hit: false
+  - path: /.well-known/oauth-protected-resource
+    status: 401
+    hit: false
+  - path: /.well-known/api-catalog
+    status: 401
+    hit: false
+  - path: /.well-known/agent-card.json
+    status: 401
+    hit: false
+  - path: /.well-known/agent.json
+    status: 401
+    hit: false
+- host: https://titan.gosecure.net
+  note: 'Keycloak-protected Titan console. Answers HTTP 200 with the same ~9.6KB
+    login page for every path probed, including /openapi.json and every /.well-known/
+    path — a soft-200 catch-all, recorded as a miss, not a hit.'
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    hit: false
+    note: HTML login page, not a JSON agent card.
+  - path: /openapi.json
+    status: 200
+    hit: false
+    note: HTML login page, not a spec.
+- host: https://countertack.com
+  note: 'Legacy CounterTack apex. DNS resolves to 208.80.205.24 — the same address
+    as gosecure.net — but the TLS certificate presented does not cover countertack.com,
+    so no HTTPS request completes (curl exit 60, http_code 000). Plain HTTP 303s to
+    HTTPS, which then fails. No document is reachable on this host.'
+  documents:
+  - path: /
+    status: 000
+    hit: false
+    note: TLS handshake completes, certificate subject does not match countertack.com.
+  - path: /.well-known/security.txt
+    status: 000
+    hit: false

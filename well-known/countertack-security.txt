@@ -1,0 +1,12 @@
+# Contact
+Contact: mailto:security@gosecure.net
+
+# Our PGP Key
+Encryption: https://gosecure.ai/.well-known/pgp-key.asc
+
+Expires: 2027-07-11T00:00:00Z
+
+# Canonical URI
+Canonical: https://www.gosecure.ai/.well-known/security.txt
+
+Preferred-Languages: en, fr

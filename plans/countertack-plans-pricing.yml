@@ -1,0 +1,24 @@
+generated: '2026-08-11'
+method: searched
+source: https://www.gosecure.ai/sitemap.xml
+plan_count: 0
+plans: []
+note: 'GoSecure (formerly CounterTack) publishes no pricing or plans page. The
+  server-published sitemap lists 15 URLs and contains no /pricing or /plans path, and
+  the site is a single-page application that answers HTTP 200 with an identical
+  2493-byte shell for every path — including a deliberate control path — so a 200 on
+  /pricing is not evidence a pricing page exists. The go-to-market is enterprise
+  contact-sales via https://www.gosecure.ai/contact. No machine-readable pricing or
+  catalog endpoint was found.'
+x-evidence:
+  fetched: '2026-08-11'
+  probes:
+  - url: https://www.gosecure.ai/sitemap.xml
+    status: 200
+    note: 15 locs, none pricing-related
+  - url: https://www.gosecure.ai/pricing
+    status: 200
+    note: SPA shell, 2493 bytes — identical to the control path response
+  - url: https://www.gosecure.ai/zzz-control-does-not-exist
+    status: 200
+    note: control path, 2493 bytes — proves the 200 above is a soft-200

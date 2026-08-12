@@ -1,18 +1,79 @@
 aid: countertack
 name: CounterTack
-description: 'CounterTack is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'CounterTack, Inc. was a Waltham, Massachusetts endpoint detection and
+  response (EDR) vendor whose Sentinel and Endpoint Threat Platform products applied
+  behavioral analysis, memory forensics and machine learning to detect zero-days, rootkits
+  and advanced persistent threats. In June 2018 CounterTack acquired its channel partner
+  GoSecure, a managed detection and response (MDR) provider, and in March 2019 rebranded
+  the combined company as "GoSecure powered by CounterTack"; the CounterTack name has
+  since been retired in favour of GoSecure, which today markets a managed extended detection
+  and response (MXDR) service and the GoSecure Titan platform covering EDR, IDR, NGAV,
+  SIEM and professional services. The CounterTack surface is therefore historical: countertack.com
+  still resolves to GoSecure infrastructure but serves no valid certificate, and the
+  living platform is customer-only behind a Keycloak single sign-on at titan.gosecure.net.'
+image: https://www.gosecure.ai/images/sharing/gosecure-facebook.jpg
 url: https://raw.githubusercontent.com/api-evangelist/countertack/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
 x-tier-reason: harvest
+x-successor: GoSecure (https://www.gosecure.ai/)
 specificationVersion: '0.20'
 created: '2026-08-11'
 modified: '2026-08-11'
 tags:
 - Company
-apis: []
+- Security
+- Cybersecurity
+- Endpoint Security
+- Endpoint Detection and Response
+- Managed Detection and Response
+- Threat Detection
+- Incident Response
+- SIEM
+apis:
+- name: GoSecure Titan Platform API
+  description: 'A customer-only HTTP API host operated by GoSecure (formerly CounterTack)
+    behind the GoSecure Titan platform. The host answers HTTP 401 on every path probed
+    — including /robots.txt and every /.well-known/ path — so no anonymous discovery,
+    OpenAPI document, or reference documentation is reachable. Its identity layer is
+    public: the Titan single sign-on is a Keycloak deployment at login.gosecure.net
+    whose OpenID Connect discovery document for the gosec-titan realm is served anonymously
+    and is captured in this repository. No public developer portal, API reference, SDK,
+    pricing page, or rate-limit documentation could be found for this API.'
+  humanURL: https://www.gosecure.ai/services/titan-platform
+  baseURL: https://api.gosecure.net
+  tags:
+  - Security
+  - Endpoint Detection and Response
+  - Managed Detection and Response
+  x-evidence:
+    fetched: '2026-08-11'
+    probes:
+    - url: https://api.gosecure.net/
+      status: 401
+    - url: https://api.gosecure.net/openapi.json
+      status: 401
+    - url: https://api.gosecure.net/swagger.json
+      status: 401
+    - url: https://api.gosecure.net/graphql
+      status: 401
+    - url: https://api.gosecure.net/robots.txt
+      status: 401
+    - url: https://login.gosecure.net/realms/gosec-titan/.well-known/openid-configuration
+      status: 200
+    note: baseURL confirmed by DNS (api.gosecure.net -> 208.80.205.68) and a live TLS
+      response; every path returns 401 Unauthorized, so the API exists but is entirely
+      credential-gated. No OpenAPI was found or fabricated.
+  properties:
+  - type: Authentication
+    url: authentication/countertack-authentication.yml
+  - type: OAuthScopes
+    url: scopes/countertack-scopes.yml
+  - type: OpenIDConnect
+    url: well-known/countertack-gosec-titan-openid-configuration.json
+  - type: Login
+    url: https://titan.gosecure.net/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +81,62 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://www.gosecure.ai/
+- type: Support
+  url: https://www.gosecure.ai/support
+- type: GitHubOrganization
+  url: https://github.com/GoSecure
+- type: Login
+  url: https://titan.gosecure.net/
+- type: Authentication
+  url: authentication/countertack-authentication.yml
+- type: OAuthScopes
+  url: scopes/countertack-scopes.yml
+- type: WellKnown
+  url: well-known/countertack-well-known.yml
+- type: SecurityTxt
+  url: well-known/countertack-security.txt
+- type: Security
+  url: https://www.gosecure.ai/.well-known/security.txt
+- type: VulnerabilityDisclosure
+  url: security/countertack-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/countertack-domain-security.yml
+- type: Conformance
+  url: conformance/countertack-conformance.yml
+- type: Lifecycle
+  url: lifecycle/countertack-lifecycle.yml
+- type: Plans
+  url: plans/countertack-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/countertack-rate-limits.yml
+- type: Packages
+  url: packages/countertack-packages.yml
+- type: LLMsTxt
+  url: llms/countertack-llms.txt
+- type: SecondaryMarket
   url: https://forgeglobal.com/countertack_stock/
+x-enrichment:
+  date: '2026-08-11'
+  status: minimal
+  artifacts_added: 14
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: CounterTack now trades as GoSecure, and its live Titan API host api.gosecure.net
+    returns HTTP 401 on every path probed — including /robots.txt and every /.well-known/
+    path — while the Titan console sits behind a Keycloak tenant login, so the contract
+    and reference are reachable only by an existing GoSecure customer.
+  evidence:
+  - url: https://api.gosecure.net/openapi.json
+    status: 401
+  - url: https://api.gosecure.net/robots.txt
+    status: 401
+  - url: https://titan.gosecure.net/
+    status: 200
+  - url: https://www.gosecure.ai/sitemap.xml
+    status: 200
+  - url: https://countertack.com/
+    status: 0
+  checked: '2026-08-11'

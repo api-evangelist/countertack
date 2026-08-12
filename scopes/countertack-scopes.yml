@@ -1,0 +1,105 @@
+generated: '2026-08-11'
+method: probed
+source: https://login.gosecure.net/realms/gosec-titan/.well-known/openid-configuration
+docs: null
+note: 'Scopes read verbatim from the scopes_supported array of the GoSecure Titan
+  Keycloak realm discovery document. GoSecure publishes no scope/permission reference
+  page that could be found, so the descriptions below only distinguish the standard
+  OpenID Connect / Keycloak built-in scopes from the two realm-specific scopes
+  (titan, service_account); the actual permissions those two grant are not publicly
+  documented and have NOT been guessed.'
+schemes:
+- name: gosec-titan
+  source: well-known/countertack-gosec-titan-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.gosecure.net/realms/gosec-titan/protocol/openid-connect/auth
+    tokenUrl: https://login.gosecure.net/realms/gosec-titan/protocol/openid-connect/token
+  - flow: clientCredentials
+    tokenUrl: https://login.gosecure.net/realms/gosec-titan/protocol/openid-connect/token
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://login.gosecure.net/realms/gosec-titan/protocol/openid-connect/auth/device
+  - flow: implicit
+    authorizationUrl: https://login.gosecure.net/realms/gosec-titan/protocol/openid-connect/auth
+  - flow: password
+    tokenUrl: https://login.gosecure.net/realms/gosec-titan/protocol/openid-connect/token
+scopes:
+- scope: titan
+  description: Realm-specific scope for the GoSecure Titan platform. Its granted
+    permissions are not publicly documented.
+  standard: false
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: service_account
+  description: Realm-specific scope, presumed to accompany client-credentials service
+    accounts. Its granted permissions are not publicly documented.
+  standard: false
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: openid
+  description: OpenID Connect core scope; requests an ID token.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: profile
+  description: OpenID Connect standard scope for basic profile claims.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: email
+  description: OpenID Connect standard scope for the email and email_verified claims.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: address
+  description: OpenID Connect standard scope for the address claim.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: phone
+  description: OpenID Connect standard scope for phone_number claims.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: offline_access
+  description: OpenID Connect standard scope requesting a refresh token usable while
+    the user is offline.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: acr
+  description: Keycloak built-in client scope carrying the authentication context
+    class reference.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: roles
+  description: Keycloak built-in client scope adding realm and client role mappings
+    to the token.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: web-origins
+  description: Keycloak built-in client scope adding allowed CORS origins to the token.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: basic
+  description: Keycloak built-in client scope adding the core sub/auth_time claims.
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+- scope: microprofile-jwt
+  description: Keycloak built-in client scope emitting MicroProfile JWT claims (upn,
+    groups).
+  standard: true
+  sources:
+  - well-known/countertack-gosec-titan-openid-configuration.json
+summary:
+  scope_count: 13
+  realm_specific: 2
+  standard: 11
+x-evidence:
+  fetched: '2026-08-11'
+  url: https://login.gosecure.net/realms/gosec-titan/.well-known/openid-configuration
+  http_status: 200

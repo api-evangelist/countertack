@@ -1,0 +1,26 @@
+generated: '2026-08-11'
+method: searched
+source: https://api.gosecure.net/
+limit_count: 0
+limits: []
+headers: []
+note: 'No rate limits are documented. GoSecure publishes no developer portal or API
+  reference in which limits could appear, and the API host api.gosecure.net returns
+  401 Unauthorized with an empty body on every path, emitting no RateLimit-*,
+  X-RateLimit-* or Retry-After header, so no runtime signal could be observed either.
+  This is an honest zero, not an unchecked field.'
+observed_response_headers:
+  url: https://api.gosecure.net/openapi.json
+  status: 401
+  headers:
+  - strict-transport-security
+  - date
+  - transfer-encoding
+  rate_limit_headers_present: false
+x-evidence:
+  fetched: '2026-08-11'
+  probes:
+  - url: https://api.gosecure.net/openapi.json
+    status: 401
+  - url: https://api.gosecure.net/
+    status: 401

@@ -1,0 +1,39 @@
+generated: '2026-08-11'
+method: searched
+source: registry searches of npm, PyPI and the GoSecure/CounterTack GitHub organizations
+package_count: 0
+packages: []
+note: 'No first-party client library or SDK for CounterTack or GoSecure exists in any
+  public registry. registry.npmjs.org/gosecure and /countertack both return 404;
+  pypi.org/pypi/gosecure/json and /countertack/json both return 404. The
+  github.com/GoSecure organization is real and active (96 public repositories) but is
+  a security-research org — offensive-security tooling, workshop material, malware
+  IOCs and research notebooks — and contains no API client for the Titan platform.
+  The legacy github.com/countertack organization holds 5 repositories, all forks last
+  pushed in 2013-2014 (grape, grape-swagger, grape-swagger-ui, swagger-ui, CybOX
+  schemas) and none of them a published package. No SDKs pointer is emitted.'
+searched_registries:
+- registry: npm
+  queries: [gosecure, countertack]
+  result: 404 on both
+- registry: pypi
+  queries: [gosecure, countertack]
+  result: 404 on both
+- registry: github
+  queries: [GoSecure, countertack]
+  result: orgs exist; no first-party API client library published
+x-evidence:
+  fetched: '2026-08-11'
+  probes:
+  - url: https://registry.npmjs.org/gosecure
+    status: 404
+  - url: https://registry.npmjs.org/countertack
+    status: 404
+  - url: https://pypi.org/pypi/gosecure/json
+    status: 404
+  - url: https://pypi.org/pypi/countertack/json
+    status: 404
+  - url: https://api.github.com/orgs/GoSecure
+    status: 200
+  - url: https://api.github.com/orgs/countertack
+    status: 200

@@ -1,0 +1,148 @@
+generated: '2026-08-11'
+method: probed
+source: https://login.gosecure.net/realms/gosec-titan/.well-known/openid-configuration
+note: 'Every assertion below is evidenced from a document GoSecure actually serves.
+  No OpenAPI exists for the CounterTack/GoSecure Titan API, so none of the REST-shaped
+  standards (RFC 9457 problem details, JSON:API, OData, pagination, idempotency) could
+  be assessed; they are recorded as unknown rather than false. This file asserts
+  protocol conformance only — it is NOT a compliance-program claim, and no type:
+  Compliance pointer is emitted because GoSecure publishes no reachable certification
+  or trust page (trust.gosecure.net does not resolve; www.gosecure.ai answers 200
+  with the same SPA shell for every path, including a control path, so /trust is not
+  evidence).'
+standards:
+- id: oidc-discovery
+  name: OpenID Connect Discovery 1.0
+  conforms: true
+  evidence: https://login.gosecure.net/realms/gosec-titan/.well-known/openid-configuration
+    returns 200 application/json with issuer, authorization_endpoint, token_endpoint,
+    jwks_uri and userinfo_endpoint.
+- id: oidc-core
+  name: OpenID Connect Core 1.0
+  conforms: true
+  evidence: 'response_types_supported includes code id_token token; id_token signing
+    algs and claims_supported published.'
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: true
+  evidence: 'grant_types_supported includes authorization_code, client_credentials,
+    implicit, password and refresh_token.'
+- id: rfc8414-oauth-authorization-server-metadata
+  name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server on the realm returns 200 with the
+    same metadata document as the OIDC discovery endpoint.
+- id: rfc7636-pkce
+  name: Proof Key for Code Exchange (RFC 7636)
+  conforms: true
+  evidence: code_challenge_methods_supported = [plain, S256].
+- id: rfc7662-token-introspection
+  name: OAuth 2.0 Token Introspection (RFC 7662)
+  conforms: true
+  evidence: introspection_endpoint published.
+- id: rfc7009-token-revocation
+  name: OAuth 2.0 Token Revocation (RFC 7009)
+  conforms: true
+  evidence: revocation_endpoint published.
+- id: rfc8628-device-authorization-grant
+  name: OAuth 2.0 Device Authorization Grant (RFC 8628)
+  conforms: true
+  evidence: device_authorization_endpoint published and urn:ietf:params:oauth:grant-type:device_code
+    in grant_types_supported.
+- id: rfc9126-pushed-authorization-requests
+  name: OAuth 2.0 Pushed Authorization Requests (RFC 9126)
+  conforms: true
+  evidence: pushed_authorization_request_endpoint published; require_pushed_authorization_requests
+    is false.
+- id: rfc8705-mtls-client-auth
+  name: OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Tokens (RFC
+    8705)
+  conforms: true
+  evidence: tls_client_auth in token_endpoint_auth_methods_supported; tls_client_certificate_bound_access_tokens
+    is true; mtls_endpoint_aliases published.
+- id: rfc9101-jwt-secured-authorization-request
+  name: JWT-Secured Authorization Request (JAR, RFC 9101)
+  conforms: true
+  evidence: request_parameter_supported is true with request_object_signing_alg_values_supported
+    published.
+- id: jarm
+  name: JWT Secured Authorization Response Mode (JARM)
+  conforms: true
+  evidence: response_modes_supported includes query.jwt, fragment.jwt, form_post.jwt
+    and jwt.
+- id: rfc9207-authorization-server-issuer-identification
+  name: OAuth 2.0 Authorization Server Issuer Identification (RFC 9207)
+  conforms: true
+  evidence: authorization_response_iss_parameter_supported is true.
+- id: rfc8693-token-exchange
+  name: OAuth 2.0 Token Exchange (RFC 8693)
+  conforms: true
+  evidence: urn:ietf:params:oauth:grant-type:token-exchange in grant_types_supported.
+- id: ciba
+  name: OpenID Connect Client-Initiated Backchannel Authentication
+  conforms: true
+  evidence: backchannel_authentication_endpoint published; urn:openid:params:grant-type:ciba
+    in grant_types_supported.
+- id: uma2
+  name: User-Managed Access 2.0
+  conforms: true
+  evidence: /.well-known/uma2-configuration returns 200 with resource_registration_endpoint,
+    permission_endpoint and policy_endpoint.
+- id: rfc7591-dynamic-client-registration
+  name: OAuth 2.0 Dynamic Client Registration (RFC 7591)
+  conforms: true
+  evidence: registration_endpoint published at .../clients-registrations/openid-connect.
+- id: rfc9116-security-txt
+  name: security.txt (RFC 9116)
+  conforms: true
+  evidence: https://www.gosecure.ai/.well-known/security.txt returns 200 text/plain
+    with Contact, Encryption, Expires, Canonical and Preferred-Languages fields.
+- id: rfc9421-http-message-signatures
+  name: HTTP Message Signatures
+  conforms: false
+  evidence: no signature scheme advertised on any reachable surface.
+- id: dpop
+  name: OAuth 2.0 Demonstrating Proof of Possession (RFC 9449)
+  conforms: false
+  evidence: dpop_signing_alg_values_supported absent from the realm metadata.
+- id: fapi
+  name: FAPI 1.0 / 2.0
+  conforms: false
+  evidence: 'no FAPI profile advertised; require_pushed_authorization_requests is
+    false and the implicit and password grants remain enabled, both of which FAPI
+    prohibits.'
+- id: rfc9457-problem-details
+  name: Problem Details for HTTP APIs (RFC 9457)
+  conforms: unknown
+  evidence: 'api.gosecure.net returns 401 with an empty body and no content-type; no
+    OpenAPI is published, so the error envelope cannot be observed.'
+- id: openapi
+  name: OpenAPI Specification
+  conforms: false
+  evidence: 'no OpenAPI/Swagger document found on api.gosecure.net, titan.gosecure.net,
+    www.gosecure.ai or www.gosecure.net after probing /openapi.json, /openapi.yaml,
+    /swagger.json, /v1/openapi.json, /api-docs, /docs and /redoc on each.'
+- id: graphql
+  name: GraphQL
+  conforms: false
+  evidence: 'https://api.gosecure.net/graphql returns 401; https://titan.gosecure.net/graphql
+    returns the SPA login page. No introspectable endpoint found.'
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence: '/.well-known/agent-card.json and /.well-known/agent.json return 404 on
+    www.gosecure.ai and login.gosecure.net, 401 on api.gosecure.net, and the Keycloak
+    login HTML on titan.gosecure.net. No agent card is served.'
+x-evidence:
+  fetched: '2026-08-11'
+  probes:
+  - url: https://login.gosecure.net/realms/gosec-titan/.well-known/openid-configuration
+    status: 200
+  - url: https://login.gosecure.net/realms/gosec-titan/.well-known/uma2-configuration
+    status: 200
+  - url: https://www.gosecure.ai/.well-known/security.txt
+    status: 200
+  - url: https://api.gosecure.net/openapi.json
+    status: 401
+  - url: https://www.gosecure.ai/.well-known/agent-card.json
+    status: 404
