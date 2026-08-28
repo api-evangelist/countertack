@@ -11,6 +11,17 @@ description: 'CounterTack, Inc. was a Waltham, Massachusetts endpoint detection 
   SIEM and professional services. The CounterTack surface is therefore historical: countertack.com
   still resolves to GoSecure infrastructure but serves no valid certificate, and the
   living platform is customer-only behind a Keycloak single sign-on at titan.gosecure.net.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.gosecure.ai/images/sharing/gosecure-facebook.jpg
 url: https://raw.githubusercontent.com/api-evangelist/countertack/refs/heads/main/apis.yml
 x-type: company
