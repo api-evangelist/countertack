@@ -64,5 +64,107 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-CounterTack is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/countertack_stock/
+CounterTack, Inc. was a Waltham, Massachusetts endpoint detection and response (EDR) vendor whose Sentinel and Endpoint Threat Platform products applied behavioral analysis, memory forensics and machine learning to detect zero-days, rootkits and advanced persistent threats. In June 2018 CounterTack acquired its channel partner GoSecure, a managed detection and response (MDR) provider, and in March 2019 rebranded the combined company as "GoSecure powered by CounterTack"; the CounterTack name has since been retired in favour of GoSecure, which today markets a managed extended detection and response (MXDR) service and the GoSecure Titan platform covering EDR, IDR, NGAV, SIEM and professional services. The CounterTack surface is therefore historical: countertack.com still resolves to GoSecure infrastructure but serves no valid certificate, and the living platform is customer-only behind a Keycloak single sign-on at titan.gosecure.net.
+
+**Areas:** Company · Security · Cybersecurity · Endpoint Security · Endpoint Detection and Response · Managed Detection and Response · Threat Detection · Incident Response · SIEM
+
+## CounterTack on APIs.io
+
+Everything profiled for CounterTack is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/countertack/](https://apis.io/providers/countertack/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [GoSecure Titan Platform API](https://apis.io/apis/countertack/gosecure-titan-platform-api/) — A customer-only HTTP API host operated by GoSecure (formerly CounterTack) behind the GoSecure Titan platform. The host answers HTTP 401 on every path probed…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Countertack Authentication](https://apis.io/security/countertack/countertack-authentication/)
+- [Countertack Domain Security](https://apis.io/security/countertack/countertack-domain-security/)
+- [Countertack Vulnerability Disclosure](https://apis.io/security/countertack/countertack-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Countertack Scopes](https://apis.io/scopes/countertack/countertack-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Countertack Plans Pricing](https://apis.io/plans/countertack/countertack-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Countertack Rate Limits](https://apis.io/rate-limits/countertack/countertack-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.gosecure.ai/)
+- [Support](https://www.gosecure.ai/support)
+- [Blog](https://www.gosecure.ai/blog/)
+- [Security](https://www.gosecure.ai/.well-known/security.txt)
+- [GitHub](https://github.com/GoSecure)
+
+## API Evangelist rating
+
+**Kin Score 16.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 6.6 |
+
+**Agent readiness 17.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/countertack/](https://apis.io/providers/countertack/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CounterTack: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/countertack/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
